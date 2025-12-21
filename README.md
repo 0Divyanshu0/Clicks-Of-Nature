@@ -1,6 +1,11 @@
 # 📸 Clicks of Nature
 *A personal photography journal*
 
+<p align="center">
+  <img src="public/hero.png" alt="Clicks of Nature – Website Preview" width="1000" />
+</p>
+
+
 ## 🌿 Overview
 
 **Clicks of Nature** is a personal photography website built as a visual journal rather than a traditional studio portfolio.  
