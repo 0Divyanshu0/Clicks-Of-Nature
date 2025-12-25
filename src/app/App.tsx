@@ -7,10 +7,14 @@ import { About } from './components/About';
 import { Collaborate } from './components/Collaborate';
 import { Contact } from './components/Contact';
 import { Footer } from './components/Footer';
+import { Toaster } from "react-hot-toast";
+
 
 export default function App() {
   const [activeSection, setActiveSection] = useState('home');
   const [isDark, setIsDark] = useState(false);
+
+  
 
   useEffect(() => {
     // Check for saved theme preference or default to light mode
@@ -66,13 +70,30 @@ export default function App() {
 
   return (
     <div className={`min-h-screen transition-colors ${isDark ? 'bg-gray-900' : 'bg-white'}`}>
+    
+      {/* Toast Notifications */}
+      <Toaster
+        position="top-right"
+        toastOptions={{
+          duration: 4000,
+          style: {
+            background: isDark ? '#111827' : '#ffffff',
+            color: isDark ? '#ffffff' : '#111827',
+            borderRadius: '8px',
+            fontSize: '14px',
+          },
+        }}
+      />
+
       <ScrollProgress />
-      <Header 
-        activeSection={activeSection} 
+
+      <Header
+        activeSection={activeSection}
         onNavigate={handleNavigate}
         isDark={isDark}
         toggleTheme={toggleTheme}
       />
+
       <Hero isDark={isDark} />
       <Portfolio isDark={isDark} />
       <About isDark={isDark} />
