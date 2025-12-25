@@ -37,9 +37,8 @@ Some connections don’t need Wi-Fi.
     id: '2',
     slug: 'walking-without-a-destination',
     title: 'Walking Without a Destination',
-    excerpt:
-      'A walk, a camera, and no plan. Just light, shadows, and patience.',
-    image: '/Hero.png',
+    excerpt:'A walk, a camera, and no plan. Just light, shadows, and patience.',
+    image: '/Journal/morning-walk.jpg',
     date: 'Dec 2025',
     readTime: '2 min read',
     content: `

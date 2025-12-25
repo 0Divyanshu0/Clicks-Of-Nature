@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { journalEntries, JournalEntry } from "../../data/journal";
 import { JournalCard } from "./JournalCard";
-import { JournalPost } from "./JournalPost";
+import JournalModal from "./JournalModal";
 
 interface JournalProps {
   isDark: boolean;
@@ -26,6 +26,7 @@ export default function Journal({ isDark }: JournalProps) {
           Photography Journal
         </h2>
 
+        {/* Journal Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {journalEntries.map((entry) => (
             <JournalCard
@@ -38,9 +39,10 @@ export default function Journal({ isDark }: JournalProps) {
         </div>
       </div>
 
-      {/* Modal */}
-      <JournalPost
-        entry={activeEntry}
+      {/* Modal (single source of truth) */}
+      <JournalModal
+        isOpen={!!activeEntry}
+        post={activeEntry}
         isDark={isDark}
         onClose={() => setActiveEntry(null)}
       />
