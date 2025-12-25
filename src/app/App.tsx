@@ -8,6 +8,7 @@ import { Collaborate } from './components/Collaborate';
 import { Contact } from './components/Contact';
 import { Footer } from './components/Footer';
 import { Toaster } from "react-hot-toast";
+import Journal from "./components/Journal";
 
 
 export default function App() {

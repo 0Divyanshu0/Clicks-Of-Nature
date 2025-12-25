@@ -14,7 +14,7 @@ export function Header({ activeSection, onNavigate, isDark, toggleTheme }: Heade
 
 const navItems = [
   { id: 'home', label: 'Home' },
-  { id: 'portfolio', label: 'Portfolio' },
+  { id: 'portfolio', label: 'Journal' },
   { id: 'about', label: 'About' },
   { id: 'collaborate', label: 'Stories' }, // 👈 changed
   { id: 'contact', label: 'Contact' },
