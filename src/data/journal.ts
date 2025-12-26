@@ -16,7 +16,7 @@ export const journalEntries: JournalEntry[] = [
     title: 'No Wi-Fi, Just Better Connections',
     excerpt:
       'Sometimes the quiet moments say more than words. This journal is about slowing down and noticing what usually slips by.',
-    image: '/Hero.png',
+    image: 'Public/Hero.png',
     date: 'Dec 2025',
     readTime: '3 min read',
     content: `
@@ -38,7 +38,7 @@ Some connections don’t need Wi-Fi.
     slug: 'walking-without-a-destination',
     title: 'Walking Without a Destination',
     excerpt:'A walk, a camera, and no plan. Just light, shadows, and patience.',
-    image: '/Journal/morning-walk.jpg',
+    image: 'Public/Journal/morning-walk.jpg',
     date: 'Dec 2025',
     readTime: '2 min read',
     content: `

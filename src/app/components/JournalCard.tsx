@@ -1,7 +1,6 @@
 import { motion } from "motion/react";
 import { JournalEntry } from "../../data/journal";
 
-
 interface JournalCardProps {
   entry: JournalEntry;
   isDark: boolean;
@@ -18,9 +17,11 @@ export function JournalCard({ entry, isDark, onClick }: JournalCardProps) {
         isDark ? "bg-gray-800" : "bg-white"
       }`}
     >
-      <img
+      {/* Shared Image */}
+      <motion.img
         src={entry.image}
         alt={entry.title}
+        layoutId={`journal-image-${entry.id}`}
         className="w-full h-56 object-cover"
       />
 

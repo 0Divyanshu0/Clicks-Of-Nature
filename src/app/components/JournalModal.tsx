@@ -19,12 +19,7 @@ export default function JournalModal({
 }: JournalModalProps) {
   // 🔒 Lock background scroll
   useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
-
+    document.body.style.overflow = isOpen ? "hidden" : "";
     return () => {
       document.body.style.overflow = "";
     };
@@ -44,37 +39,43 @@ export default function JournalModal({
     <AnimatePresence>
       {isOpen && post && (
         <motion.div
-          className="fixed inset-0 z-[9999] flex items-center justify-center"
+          className="fixed inset-0 z-[9999] flex items-center justify-center px-4"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
         >
           {/* Backdrop */}
-          <div
+          <motion.div
             className="absolute inset-0 bg-black/70 backdrop-blur-sm"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
             onClick={onClose}
           />
 
-          {/* Modal Content */}
+          {/* Modal Container */}
           <motion.div
-            initial={{ scale: 0.95, y: 20 }}
-            animate={{ scale: 1, y: 0 }}
-            exit={{ scale: 0.95, y: 20 }}
-            transition={{ type: "spring", stiffness: 140 }}
-            className={`relative z-10 w-full max-w-3xl max-h-[90vh] overflow-y-auto rounded-xl shadow-2xl ${
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 40 }}
+            transition={{ duration: 0.35, ease: "easeOut" }}
+            className={`relative z-10 w-full max-w-5xl h-[90vh] rounded-2xl shadow-2xl overflow-hidden ${
               isDark ? "bg-gray-900 text-white" : "bg-white text-black"
             }`}
           >
             {/* Close Button */}
             <button
               onClick={onClose}
-              className="absolute top-4 right-4 p-2 rounded-full hover:bg-black/10 dark:hover:bg-white/10 transition"
+              className="absolute top-4 right-4 z-20 p-2 rounded-full hover:bg-black/10 dark:hover:bg-white/10 transition"
               aria-label="Close journal"
             >
               <X />
             </button>
 
-            <JournalPost entry={post} isDark={isDark} onClose={onClose} />
+            {/* Scrollable Content */}
+            <div className="h-full overflow-y-auto">
+              <JournalPost entry={post} isDark={isDark} onClose={onClose} />
+            </div>
           </motion.div>
         </motion.div>
       )}

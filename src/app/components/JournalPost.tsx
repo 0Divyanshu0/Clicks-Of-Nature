@@ -1,4 +1,4 @@
-import { X } from "lucide-react";
+import { motion } from "motion/react";
 import { JournalEntry } from "../../data/journal";
 
 interface JournalPostProps {
@@ -7,27 +7,21 @@ interface JournalPostProps {
   onClose: () => void;
 }
 
-export function JournalPost({ entry, isDark, onClose }: JournalPostProps) {
+export function JournalPost({ entry, isDark }: JournalPostProps) {
   return (
-    <article>
-      {/* Close button */}
-      <button
-        onClick={onClose}
-        className="absolute top-4 right-4 p-2 rounded-full hover:bg-black/10 dark:hover:bg-white/10 transition"
-        aria-label="Close journal"
-      >
-        <X />
-      </button>
-
-      {/* Hero image */}
-      <img
-        src={entry.image}
-        alt={entry.title}
-        className="w-full h-72 object-cover rounded-t-xl"
-      />
+    <article className="flex flex-col">
+      {/* Hero Image */}
+      <div className="w-full bg-black flex justify-center items-center">
+        <motion.img
+          src={entry.image}
+          alt={entry.title}
+          layoutId={`journal-image-${entry.id}`}
+          className="w-full h-auto max-h-[80vh] object-contain"
+        />
+      </div>
 
       {/* Content */}
-      <div className="p-6 sm:p-8">
+      <div className="p-6 sm:p-8 max-w-3xl mx-auto">
         <p className="text-xs text-gray-400 mb-2">
           {entry.date} · {entry.readTime}
         </p>
