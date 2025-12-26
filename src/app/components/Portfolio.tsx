@@ -5,21 +5,21 @@ import { ImageWithFallback } from './figma/ImageWithFallback';
 const portfolioItems = [
   {
     id: 1,
-    image: 'https://images.unsplash.com/photo-1544124094-8aea0374da93?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwb3J0cmFpdCUyMHBob3RvZ3JhcGh5fGVufDF8fHx8MTc2NjE4OTg0MHww&ixlib=rb-4.1.0&q=80&w=1080',
+    image: '/Journal/kerela-water-bridge.jpg',
    title: 'Golden Hour',
   category: 'People',
   description: 'Light softens everything for a moment before fading.',
   },
   {
     id: 2,
-    image: 'https://images.unsplash.com/photo-1617634667039-8e4cb277ab46?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsYW5kc2NhcGUlMjBuYXR1cmV8ZW58MXx8fHwxNzY2MjMzODA2fDA&ixlib=rb-4.1.0&q=80&w=1080',
+    image: '/Journal/kerela-tea-garden.jpg',
     title: 'Mountain Majesty',
     category: 'Landscape',
     description: 'Breathtaking landscape photography featuring majestic mountains and pristine natural beauty.',
   },
   {
     id: 3,
-    image: 'https://images.unsplash.com/photo-1548566862-2c9b1fed780a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx1cmJhbiUyMGFyY2hpdGVjdHVyZXxlbnwxfHx8fDE3NjYxODc4OTl8MA&ixlib=rb-4.1.0&q=80&w=1080',
+    image: '/Journal/karela-lake.jpg',
     title: 'Urban Architecture',
     category: 'Architecture',
     description: 'Modern architectural photography capturing the essence of contemporary urban design.',

@@ -20,8 +20,8 @@ export function Hero({ isDark }: HeroProps) {
       }`}
     >
       {/* Background Image */}
-      <motion.div style={{ y }} className="absolute inset-0 opacity-20">
-        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1544124094-8aea0374da93?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080')] bg-cover bg-center" />
+      <motion.div style={{ y }} className="absolute inset-0 opacity-50">
+        <div className="absolute inset-0 bg-[url('/Journal/Hero.jpg')] bg-cover bg-center" />
       </motion.div>
 
       {/* Content */}

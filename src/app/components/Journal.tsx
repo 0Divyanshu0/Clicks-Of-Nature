@@ -10,6 +10,11 @@ interface JournalProps {
 export default function Journal({ isDark }: JournalProps) {
   const [activeEntry, setActiveEntry] = useState<JournalEntry | null>(null);
 
+  // ✅ Sort by editorial priority (lower = higher importance)
+  const sortedEntries = [...journalEntries].sort(
+    (a, b) => a.priority - b.priority
+  );
+
   return (
     <section
       id="journal"
@@ -28,7 +33,7 @@ export default function Journal({ isDark }: JournalProps) {
 
         {/* Journal Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {journalEntries.map((entry) => (
+          {sortedEntries.map((entry) => (
             <JournalCard
               key={entry.id}
               entry={entry}
@@ -39,7 +44,7 @@ export default function Journal({ isDark }: JournalProps) {
         </div>
       </div>
 
-      {/* Modal (single source of truth) */}
+      {/* Modal */}
       <JournalModal
         isOpen={!!activeEntry}
         post={activeEntry}

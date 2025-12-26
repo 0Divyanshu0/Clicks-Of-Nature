@@ -17,14 +17,19 @@ export function JournalCard({ entry, isDark, onClick }: JournalCardProps) {
         isDark ? "bg-gray-800" : "bg-white"
       }`}
     >
-      {/* Shared Image */}
-      <motion.img
-        src={entry.image}
-        alt={entry.title}
-        layoutId={`journal-image-${entry.id}`}
-        className="w-full h-56 object-cover"
-      />
+      {/* Image wrapper with fixed aspect ratio */}
+      <div className="relative aspect-[4/3] overflow-hidden">
+        <motion.img
+          src={entry.image}
+          alt={entry.title}
+          layoutId={`journal-image-${entry.id}`}
+          className="absolute inset-0 w-full h-full object-cover"
+          whileHover={{ scale: 1.04 }}
+          transition={{ duration: 0.4, ease: "easeOut" }}
+        />
+      </div>
 
+      {/* Text content */}
       <div className="p-5">
         <p className="text-xs text-gray-400 mb-1">
           {entry.date} · {entry.readTime}
