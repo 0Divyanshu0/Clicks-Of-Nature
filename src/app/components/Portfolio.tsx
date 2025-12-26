@@ -93,9 +93,12 @@ export function Portfolio({ isDark }: PortfolioProps) {
       : portfolioItems.filter((item) => item.category === selectedCategory);
 
   return (
-    <section id="portfolio" className={`py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8 transition-colors ${
-      isDark ? 'bg-gray-800' : 'bg-gray-50'
-    }`}>
+    <section
+      id="portfolio"
+      className={`py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8 transition-colors ${
+        isDark ? "bg-gray-800" : "bg-gray-50"
+      }`}
+    >
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -103,18 +106,21 @@ export function Portfolio({ isDark }: PortfolioProps) {
           viewport={{ once: true }}
           className="text-center mb-8 sm:mb-12"
         >
-<h2
-  className={`text-3xl sm:text-4xl lg:text-5xl mb-3 sm:mb-4 ${
-    isDark ? 'text-white' : 'text-black'
-  }`}
->
-  Moments
-</h2>
+          <h2
+            className={`text-3xl sm:text-4xl lg:text-5xl mb-3 sm:mb-4 ${
+              isDark ? "text-white" : "text-black"
+            }`}
+          >
+            Moments
+          </h2>
 
-<p className={`text-lg sm:text-xl ${isDark ? 'text-gray-300' : 'text-gray-600'} px-4`}>
-  A quiet collection of places, people, and passing light
-</p>
-
+          <p
+            className={`text-lg sm:text-xl ${
+              isDark ? "text-gray-300" : "text-gray-600"
+            } px-4`}
+          >
+            A quiet collection of places, people, and passing light
+          </p>
         </motion.div>
 
         {/* Category Filter */}
@@ -132,8 +138,12 @@ export function Portfolio({ isDark }: PortfolioProps) {
               whileTap={{ scale: 0.95 }}
               className={`px-4 sm:px-6 py-2 rounded-full transition-all text-sm sm:text-base ${
                 selectedCategory === category
-                  ? isDark ? 'bg-white text-black' : 'bg-black text-white'
-                  : isDark ? 'bg-gray-700 text-gray-200 hover:bg-gray-600' : 'bg-white text-gray-700 hover:bg-gray-200'
+                  ? isDark
+                    ? "bg-white text-black"
+                    : "bg-black text-white"
+                  : isDark
+                  ? "bg-gray-700 text-gray-200 hover:bg-gray-600"
+                  : "bg-white text-gray-700 hover:bg-gray-200"
               }`}
             >
               {category}
@@ -149,31 +159,30 @@ export function Portfolio({ isDark }: PortfolioProps) {
               initial={{ opacity: 0, y: 50, scale: 0.9 }}
               whileInView={{ opacity: 1, y: 0, scale: 1 }}
               viewport={{ once: true, margin: "-50px" }}
-              transition={{ 
+              transition={{
                 delay: index * 0.1,
                 duration: 0.5,
                 type: "spring",
-                stiffness: 100
+                stiffness: 100,
               }}
               className={`group relative overflow-hidden rounded-lg shadow-lg ${
-                isDark ? 'bg-gray-900' : 'bg-white'
+                isDark ? "bg-gray-900" : "bg-white"
               }`}
               onMouseEnter={() => setHoveredId(item.id)}
               onMouseLeave={() => setHoveredId(null)}
             >
-              <div className="aspect-[4/5] overflow-hidden">
+              <div className="aspect-[4/5] bg-black/20 flex items-center justify-center overflow-hidden rounded-lg  ">
                 <motion.div
-  whileHover={{ scale: 1.1 }}
-  transition={{ duration: 0.5 }}
-  className="w-full h-full"
->
-  <ImageWithFallback
-    src={item.image}
-    alt={item.title}
-    className="w-full h-full object-cover"
-  />
-</motion.div>
-
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ duration: 0.5 }}
+                  className="w-full h-full"
+                >
+                  <ImageWithFallback
+                    src={item.image}
+                    alt={item.title}
+                    className="w-full h-full object-cover"
+                  />
+                </motion.div>
               </div>
 
               <motion.div
@@ -184,9 +193,15 @@ export function Portfolio({ isDark }: PortfolioProps) {
                 }}
                 className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent flex flex-col justify-end p-4 sm:p-6 pointer-events-none"
               >
-                <span className="text-xs sm:text-sm text-gray-300 mb-1 sm:mb-2">{item.category}</span>
-                <h3 className="text-xl sm:text-2xl text-white mb-1 sm:mb-2">{item.title}</h3>
-                <p className="text-sm sm:text-base text-gray-300">{item.description}</p>
+                <span className="text-xs sm:text-sm text-gray-300 mb-1 sm:mb-2">
+                  {item.category}
+                </span>
+                <h3 className="text-xl sm:text-2xl text-white mb-1 sm:mb-2">
+                  {item.title}
+                </h3>
+                <p className="text-sm sm:text-base text-gray-300">
+                  {item.description}
+                </p>
               </motion.div>
             </motion.div>
           ))}
