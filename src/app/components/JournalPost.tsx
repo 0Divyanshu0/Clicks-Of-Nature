@@ -16,7 +16,7 @@ export function JournalPost({ entry, isDark }: JournalPostProps) {
           src={entry.image}
           alt={entry.title}
           layoutId={`journal-image-${entry.id}`}
-          className="w-full h-auto max-h-[80vh] object-contain"
+          className="w-full h-auto max-h-[100vh] object-contain"
         />
       </div>
 

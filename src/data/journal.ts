@@ -20,8 +20,18 @@ export const journalEntries: JournalEntry[] = [
     image: "/Journal/Hero.png",
     date: "Dec 2025",
     readTime: "3 min read",
-    priority: 1, // 👈 TOP ROW / FEATURED
-    content: `...`,
+    priority: 3, // 👈 TOP ROW / FEATURED
+    content: `There was no signal where we stopped.
+Just wind, trees, and conversations that didn’t rush.
+
+I realized how often silence makes us uncomfortable.
+But this time, it felt grounding.
+
+No notifications.
+No urgency.
+Just presence.
+
+Some connections don’t need Wi-Fi.`,
   },
   {
     id: "2",
@@ -31,8 +41,15 @@ export const journalEntries: JournalEntry[] = [
     image: "/Journal/morning-walk.jpg",
     date: "Dec 2025",
     readTime: "2 min read",
-    priority: 2, // 👈 SECOND ROW
-    content: `...`,
+    priority: 1, // 👈 SECOND ROW
+    content: `I didn’t know where I was going.
+And that was the point.
+
+Every turn felt slower.
+Every frame felt earned.
+
+Sometimes the best walks
+are the ones that don’t try to arrive.`,
   },
 ];
 
