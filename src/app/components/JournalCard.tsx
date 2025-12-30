@@ -13,11 +13,11 @@ export function JournalCard({ entry, isDark, onClick }: JournalCardProps) {
       onClick={onClick}
       whileHover={{ y: -6 }}
       transition={{ type: "spring", stiffness: 120 }}
-      className={`cursor-pointer rounded-xl overflow-hidden shadow-lg ${
+      className={`cursor-pointer rounded-xl overflow-hidden shadow-lg active:scale-[0.98] sm:active:scale-100 ${
         isDark ? "bg-gray-800" : "bg-white"
       }`}
     >
-      {/* Image wrapper with fixed aspect ratio */}
+      {/* Image wrapper */}
       <div className="relative aspect-[4/3] overflow-hidden">
         <motion.img
           src={entry.image}
@@ -30,7 +30,7 @@ export function JournalCard({ entry, isDark, onClick }: JournalCardProps) {
       </div>
 
       {/* Text content */}
-      <div className="p-5">
+      <div className="p-4 sm:p-5">
         <p className="text-xs text-gray-400 mb-1">
           {entry.date} · {entry.readTime}
         </p>

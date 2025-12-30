@@ -20,7 +20,7 @@ export const journalEntries: JournalEntry[] = [
     image: "/Journal/Hero.png",
     date: "Dec 2025",
     readTime: "3 min read",
-    priority: 3, // 👈 TOP ROW / FEATURED
+    priority: 3,
     content: `There was no signal where we stopped.
 Just wind, trees, and conversations that didn’t rush.
 

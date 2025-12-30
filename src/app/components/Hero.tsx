@@ -1,5 +1,5 @@
-import { motion, useScroll, useTransform } from 'motion/react';
-import { Camera } from 'lucide-react';
+import { motion, useScroll, useTransform } from "motion/react";
+import { Camera } from "lucide-react";
 
 interface HeroProps {
   isDark: boolean;
@@ -7,22 +7,30 @@ interface HeroProps {
 
 export function Hero({ isDark }: HeroProps) {
   const { scrollY } = useScroll();
+
+  // Disable heavy parallax on mobile
   const y = useTransform(scrollY, [0, 500], [0, 150]);
   const opacity = useTransform(scrollY, [0, 300], [1, 0]);
 
   return (
     <section
       id="home"
-      className={`relative min-h-screen flex items-center justify-center overflow-hidden ${
+      className={`relative min-h-[100svh] flex items-center justify-center overflow-hidden ${
         isDark
-          ? 'bg-gradient-to-br from-gray-900 to-black'
-          : 'bg-gradient-to-br from-gray-900 to-gray-800'
+          ? "bg-gradient-to-br from-gray-900 to-black"
+          : "bg-gradient-to-br from-gray-900 to-gray-800"
       }`}
     >
       {/* Background Image */}
-      <motion.div style={{ y }} className="absolute inset-0 opacity-50">
+      <motion.div
+        style={{ y }}
+        className="absolute inset-0 opacity-50 hidden sm:block"
+      >
         <div className="absolute inset-0 bg-[url('/Journal/Hero.jpg')] bg-cover bg-center" />
       </motion.div>
+
+      {/* Static background for mobile */}
+      <div className="absolute inset-0 opacity-50 sm:hidden bg-[url('/Journal/Hero.jpg')] bg-cover bg-center" />
 
       {/* Content */}
       <motion.div
@@ -34,9 +42,9 @@ export function Hero({ isDark }: HeroProps) {
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
           transition={{ duration: 0.5 }}
-          className="mb-4 sm:mb-6 inline-block"
+          className="mb-3 sm:mb-6 inline-block"
         >
-          <Camera size={42} className="text-white opacity-80" />
+          <Camera size={40} className="text-white opacity-80" />
         </motion.div>
 
         {/* Title */}
@@ -56,10 +64,10 @@ export function Hero({ isDark }: HeroProps) {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5 }}
-          className="text-base sm:text-lg md:text-xl text-gray-300 mb-8 px-2"
+          className="text-base sm:text-lg md:text-xl text-gray-300 mb-6 sm:mb-8 px-2"
         >
-          A personal photography journal — capturing quiet moments,
-          nature, and everyday stories, one frame at a time.
+          A personal photography journal — capturing quiet moments, nature, and
+          everyday stories, one frame at a time.
         </motion.p>
 
         {/* CTA */}
@@ -71,14 +79,16 @@ export function Hero({ isDark }: HeroProps) {
           whileTap={{ scale: 0.95 }}
           className="px-6 sm:px-8 py-3 bg-white text-black rounded-full hover:bg-gray-100 transition-colors text-sm sm:text-base"
           onClick={() => {
-            document.getElementById('portfolio')?.scrollIntoView({ behavior: 'smooth' });
+            document
+              .getElementById("portfolio")
+              ?.scrollIntoView({ behavior: "smooth" });
           }}
         >
           Explore Moments
         </motion.button>
       </motion.div>
 
-      {/* Scroll Indicator */}
+      {/* Scroll Indicator (desktop only) */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}

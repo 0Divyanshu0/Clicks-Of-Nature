@@ -16,17 +16,19 @@ export function JournalPost({ entry, isDark }: JournalPostProps) {
           src={entry.image}
           alt={entry.title}
           layoutId={`journal-image-${entry.id}`}
-          className="w-full h-auto max-h-[100vh] object-contain"
+          className="w-full h-auto max-h-[60svh] sm:max-h-[80vh] object-contain"
         />
       </div>
 
       {/* Content */}
-      <div className="p-6 sm:p-8 max-w-3xl mx-auto">
+      <div className="p-5 sm:p-8 max-w-3xl mx-auto">
         <p className="text-xs text-gray-400 mb-2">
           {entry.date} · {entry.readTime}
         </p>
 
-        <h2 className="text-2xl sm:text-3xl font-medium mb-6">{entry.title}</h2>
+        <h2 className="text-2xl sm:text-3xl font-medium mb-5 sm:mb-6">
+          {entry.title}
+        </h2>
 
         <div
           className={`text-base leading-relaxed whitespace-pre-line ${
