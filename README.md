@@ -2,7 +2,7 @@
 *A personal photography journal*
 
 <p align="center">
-  <img src="Public/Hero.png" alt="Clicks of Nature – Website Preview" width="1000" />
+  <img src="Public/Journal/Hero.png" alt="Clicks of Nature – Website Preview" width="1000" />
 </p>
 
 
