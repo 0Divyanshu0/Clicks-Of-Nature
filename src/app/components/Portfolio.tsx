@@ -1,94 +1,89 @@
-import { motion } from 'motion/react';
-import { useState } from 'react';
-import { ImageWithFallback } from './figma/ImageWithFallback';
+import { motion } from "motion/react";
+import { useState } from "react";
+import { ImageWithFallback } from "./figma/ImageWithFallback";
 
 const portfolioItems = [
   {
     id: 1,
-    image: '/Journal/kerela-water-bridge.jpg',
-   title: 'Golden Hour',
-  category: 'People',
-  description: 'Light softens everything for a moment before fading.',
+    image: "/Journal/red-bettle.jpeg",
+    title: "Red on Green",
+    category: "Nature",
+    description: "A quiet moment where color and stillness meet.",
   },
   {
     id: 2,
-    image: '/Journal/kerela-tea-garden.jpg',
-    title: 'Mountain Majesty',
-    category: 'Landscape',
-    description: 'Breathtaking landscape photography featuring majestic mountains and pristine natural beauty.',
+    image: "/Journal/kerela-tea-garden.jpg",
+    title: "Quiet Greens",
+    category: "Nature",
+    description: "Where layers of green stand still, unbothered by time.",
   },
   {
     id: 3,
-    image: '/Journal/karela-lake.jpg',
-    title: 'Urban Architecture',
-    category: 'Architecture',
-    description: 'Modern architectural photography capturing the essence of contemporary urban design.',
+    image: "/Journal/long-exposure-traffic.jpeg",
+    title: "Passing Through",
+    category: "Street",
+    description: "Lines of light rushing forward, while the night stays still.",
   },
   {
     id: 4,
-    image: 'https://images.unsplash.com/photo-1628803184377-c5167a0cb6fd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzdHJlZXQlMjBwaG90b2dyYXBoeXxlbnwxfHx8fDE3NjYyMjgzNzB8MA&ixlib=rb-4.1.0&q=80&w=1080',
-    title: 'Street Stories',
-    category: 'Street',
-    description: 'Candid street photography that captures authentic moments and urban life narratives.',
+    image: "/Journal/lion.jpeg",
+    title: "Silent Approach",
+    category: "Wildlife",
+    description: "Eyes forward, body low — movement without sound.",
   },
   {
     id: 5,
-    image: 'https://images.unsplash.com/photo-1599462616558-2b75fd26a283?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3ZWRkaW5nJTIwY291cGxlfGVufDF8fHx8MTc2NjIxMDQ0N3ww&ixlib=rb-4.1.0&q=80&w=1080',
-    title: 'Wedding Bliss',
-    category: 'Wedding',
-    description: 'Beautiful wedding photography preserving the most precious moments of your special day.',
+    image: "/Journal/small-purple-flower.jpeg",
+    title: "Hidden Bloom",
+    category: "Nature",
+    description: "Soft color finding its way through the leaves.",
   },
   {
     id: 6,
-    image: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxmYXNoaW9uJTIwbW9kZWx8ZW58MXx8fHwxNzY2MTY2MDkyfDA&ixlib=rb-4.1.0&q=80&w=1080',
-    title: 'Fashion Forward',
-    category: 'Fashion',
-    description: 'High-end fashion photography that brings style and elegance to life.',
+    image: "/Journal/diwali-rangoli.jpeg",
+    title: "Warm Ritual",
+    category: "Culture",
+    description: "Light resting gently on patterns made by hand.",
   },
   {
     id: 7,
-    image: 'https://images.unsplash.com/photo-1605702012553-e954fbde66eb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxuaWdodCUyMGNpdHklMjBsaWdodHN8ZW58MXx8fHwxNzY2MjI0Njk3fDA&ixlib=rb-4.1.0&q=80&w=1080',
-    title: 'Night Lights',
-    category: 'Urban',
-    description: 'Stunning night photography showcasing the vibrant energy of city lights.',
+    image: "/Journal/buddha-statue.jpeg",
+    title: "Still Mind",
+    category: "Culture",
+    description: "Silence shaped in stone, holding centuries of calm.",
   },
   {
     id: 8,
-    image: 'https://images.unsplash.com/photo-1536924430914-91f9e2041b83?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhcnRpc3RpYyUyMHBvcnRyYWl0fGVufDF8fHx8MTc2NjE0NTUyMXww&ixlib=rb-4.1.0&q=80&w=1080',
-    title: 'Artistic Vision',
-    category: 'Portrait',
-    description: 'Creative portrait photography that explores artistic expression and emotion.',
+    image: "/Journal/mahadev-drop.jpeg",
+    title: "Red Line",
+    category: "Abstract",
+    description: "A thin divide between chaos and clarity.",
   },
   {
     id: 9,
-    image: 'https://images.unsplash.com/photo-1519414442781-fbd745c5b497?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb3VudGFpbiUyMHN1bnNldHxlbnwxfHx8fDE3NjYyMTgxNjF8MA&ixlib=rb-4.1.0&q=80&w=1080',
-    title: 'Sunset Symphony',
-    category: 'Landscape',
-    description: 'Dramatic landscape photography featuring spectacular sunset vistas over mountain ranges.',
+    image: "/Journal/yellow-butterfly.jpeg",
+    title: "Quiet Landing",
+    category: "Nature",
+    description: "A moment of rest, where color meets calm.",
   },
 ];
 
+// ✅ Dynamic categories (auto-sync with data)
 const categories = [
-  'All',
-  'Nature',
-  'Streets',
-  'People',
-  'Light & Shadow',
-  'Night Walks',
-  'Everyday',
+  "All",
+  ...Array.from(new Set(portfolioItems.map((item) => item.category))),
 ];
-
 
 interface PortfolioProps {
   isDark: boolean;
 }
 
 export function Portfolio({ isDark }: PortfolioProps) {
-  const [selectedCategory, setSelectedCategory] = useState('All');
+  const [selectedCategory, setSelectedCategory] = useState("All");
   const [hoveredId, setHoveredId] = useState<number | null>(null);
 
   const filteredItems =
-    selectedCategory === 'All'
+    selectedCategory === "All"
       ? portfolioItems
       : portfolioItems.filter((item) => item.category === selectedCategory);
 
@@ -100,6 +95,7 @@ export function Portfolio({ isDark }: PortfolioProps) {
       }`}
     >
       <div className="max-w-7xl mx-auto">
+        {/* Heading */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -123,7 +119,7 @@ export function Portfolio({ isDark }: PortfolioProps) {
           </p>
         </motion.div>
 
-        {/* Category Filter */}
+        {/* Filters */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -151,7 +147,7 @@ export function Portfolio({ isDark }: PortfolioProps) {
           ))}
         </motion.div>
 
-        {/* Portfolio Grid */}
+        {/* Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
           {filteredItems.map((item, index) => (
             <motion.div
@@ -171,7 +167,7 @@ export function Portfolio({ isDark }: PortfolioProps) {
               onMouseEnter={() => setHoveredId(item.id)}
               onMouseLeave={() => setHoveredId(null)}
             >
-              <div className="aspect-[4/5] bg-black/20 flex items-center justify-center overflow-hidden rounded-lg  ">
+              <div className="aspect-[4/5] overflow-hidden rounded-lg">
                 <motion.div
                   whileHover={{ scale: 1.05 }}
                   transition={{ duration: 0.5 }}
@@ -185,6 +181,7 @@ export function Portfolio({ isDark }: PortfolioProps) {
                 </motion.div>
               </div>
 
+              {/* Hover Overlay */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{

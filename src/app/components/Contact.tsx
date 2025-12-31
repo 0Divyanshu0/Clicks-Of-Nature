@@ -85,10 +85,6 @@ export function Contact({ isDark }: ContactProps) {
       url: "https://github.com/0Divyanshu0",
     },
     {
-      name: "Twitter",
-      url: "https://twitter.com/your_username",
-    },
-    {
       name: "LinkedIn",
       url: "https://www.linkedin.com/in/divyanshu-srivastava-564a32230/",
     },

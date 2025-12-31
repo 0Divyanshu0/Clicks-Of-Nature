@@ -10,46 +10,45 @@ export interface JournalEntry {
   priority: number; // 👈 NEW
 }
 
-
 export const journalEntries: JournalEntry[] = [
-  {
-    id: "1",
-    slug: "no-wifi-better-connections",
-    title: "No Wi-Fi, Just Better Connections",
-    excerpt: "Sometimes the quiet moments say more than words.",
-    image: "/Journal/Hero.png",
-    date: "Dec 2025",
-    readTime: "3 min read",
-    priority: 3,
-    content: `There was no signal where we stopped.
-Just wind, trees, and conversations that didn’t rush.
+  { id: "1",
+  slug: "fire-and-stillness",
+  title: "Fire and Stillness",
+  excerpt: "Some moments ask nothing from us except attention.",
+  image: "/Journal/pot-fire.jpg",
+  date: "Dec 2025",
+  readTime: "3 min read",
+  priority: 3,
+  content: `The fire didn’t hurry.
+It rose, folded into itself, and breathed.
 
-I realized how often silence makes us uncomfortable.
-But this time, it felt grounding.
+We sat around it without saying much.
+Watching light replace noise.
 
-No notifications.
-No urgency.
-Just presence.
+There was warmth, but also patience.
+Time slowed where the flames stayed alive.
 
-Some connections don’t need Wi-Fi.`,
+No screens.
+No timelines.
+Just flickering moments held together by heat.
+
+Some moments don’t need words.
+They only ask to be felt.`,
   },
   {
     id: "2",
-    slug: "walking-without-a-destination",
-    title: "Walking Without a Destination",
-    excerpt: "A walk, a camera, and no plan.",
-    image: "/Journal/morning-walk.jpg",
-    date: "Dec 2025",
-    readTime: "2 min read",
-    priority: 1, // 👈 SECOND ROW
-    content: `I didn’t know where I was going.
-And that was the point.
+    slug: "morning-by-the-river",
+  title: "Morning by the River",
+  excerpt: "Light moved slowly over still water.",
+  image: "/Journal/kerela-lake.jpg",
+  date: "Jan 2026",
+  readTime: "2 min read",
+  priority: 2,
+  content: `The water barely moved.
+Birds spoke first, before the sun did.
 
-Every turn felt slower.
-Every frame felt earned.
-
-Sometimes the best walks
-are the ones that don’t try to arrive.`,
+Some mornings don’t ask for attention.
+They simply exist — quietly.`,
   },
 ];
 
