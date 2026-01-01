@@ -12,24 +12,19 @@ import Journal from "./components/Journal";
 
 export default function App() {
   const [activeSection, setActiveSection] = useState("home");
-  const [isDark, setIsDark] = useState(false);
+  const [isDark] = useState(true); // 🔒 Locked to dark
 
+  // Force dark mode globally
   useEffect(() => {
-    const savedTheme = localStorage.getItem("theme");
-    if (savedTheme === "dark") setIsDark(true);
+    document.body.classList.add("dark");
   }, []);
-
-  useEffect(() => {
-    localStorage.setItem("theme", isDark ? "dark" : "light");
-    document.body.classList.toggle("dark", isDark);
-  }, [isDark]);
 
   useEffect(() => {
     const handleScroll = () => {
       const sections = [
         "home",
         "portfolio",
-        "journal", // ✅ FIX
+        "journal",
         "about",
         "collaborate",
         "contact",
@@ -60,7 +55,7 @@ export default function App() {
   };
 
   return (
-    <div className={`min-h-screen ${isDark ? "bg-gray-900" : "bg-white"}`}>
+    <div className="min-h-screen bg-gray-900">
       <Toaster position="top-right" />
 
       <ScrollProgress />
@@ -69,15 +64,11 @@ export default function App() {
         activeSection={activeSection}
         onNavigate={handleNavigate}
         isDark={isDark}
-        toggleTheme={() => setIsDark(!isDark)}
       />
 
       <Hero isDark={isDark} />
       <Portfolio isDark={isDark} />
-
-      {/* ✅ JOURNAL WAS MISSING */}
       <Journal isDark={isDark} />
-
       <About isDark={isDark} />
       <Collaborate isDark={isDark} />
       <Contact isDark={isDark} />
