@@ -91,7 +91,7 @@ export function Footer({ isDark }: FooterProps) {
           className="pt-6 sm:pt-8 border-t border-gray-800 flex flex-col sm:flex-row justify-between items-center gap-4"
         >
           <p className="text-xs sm:text-sm text-gray-500 text-center sm:text-left">
-            © {currentYear} Clicks of Nature
+            © {currentYear} Clicks of Nature - Divyanshu Srivastava
           </p>
           <p className="text-xs sm:text-sm text-gray-500 flex items-center">
             Made with <Heart className="w-3 h-3 sm:w-4 sm:h-4 mx-1 text-red-500" /> and patience
