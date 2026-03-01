@@ -66,6 +66,42 @@ const portfolioItems = [
     category: "Nature",
     description: "A moment of rest, where color meets calm.",
   },
+  {
+    id: 10,
+    image: "/Journal/ride-bike-me.webp",
+    title: "Weekend Ride",
+    category: "Nature",
+    description: "Two wheels, endless horizons.",
+  },
+  {
+    id: 11,
+    image: "/Journal/avalabetta-top.jpg",
+    title: "Top of Avalabetta",
+    category: "Nature",
+    description: "The view from the top of Avalabetta.",
+  },
+  {
+    id: 12,
+    image: "/Journal/adi-yogi.jpg",
+    title: "Adi Yogi",
+    category: "Culture",
+    description:
+      "The Adi Yogi statue at the Isha Yoga Center, Chikkaballapur, Karnataka.",
+  },
+  {
+    id: 13,
+    image: "/Journal/sheru.jpg",
+    title: "Sheru",
+    category: "Wildlife",
+    description: "Sheru, The Dog",
+  },
+  {
+    id: 14,
+    image: "/Journal/cu-campus-gallery.jpeg",
+    title: "College Days",
+    category: "Campus",
+    description: "Wandering the gallery with a twinge of nostalgia for the college days.",
+  },
 ];
 
 // ✅ Dynamic categories (auto-sync with data)

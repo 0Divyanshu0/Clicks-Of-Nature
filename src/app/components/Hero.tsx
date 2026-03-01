@@ -8,7 +8,7 @@ interface HeroProps {
 export function Hero({ isDark }: HeroProps) {
   const { scrollY } = useScroll();
 
-  // Disable heavy parallax on mobile
+  // Parallax + fade
   const y = useTransform(scrollY, [0, 500], [0, 150]);
   const opacity = useTransform(scrollY, [0, 300], [1, 0]);
 
@@ -21,16 +21,22 @@ export function Hero({ isDark }: HeroProps) {
           : "bg-gradient-to-br from-gray-900 to-gray-800"
       }`}
     >
-      {/* Background Image */}
+      {/* Background Image (desktop with parallax) */}
       <motion.div
         style={{ y }}
         className="absolute inset-0 opacity-50 hidden sm:block"
       >
-        <div className="absolute inset-0 bg-[url('/Journal/Hero.jpg')] bg-cover bg-center" />
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: "url('/Journal/Hero.jpg')" }}
+        />
       </motion.div>
 
       {/* Static background for mobile */}
-      <div className="absolute inset-0 opacity-50 sm:hidden bg-[url('/Journal/Hero.jpg')] bg-cover bg-center" />
+      <div
+        className="absolute inset-0 opacity-50 sm:hidden bg-cover bg-center"
+        style={{ backgroundImage: "url('/Journal/Hero.jpg')" }}
+      />
 
       {/* Content */}
       <motion.div
