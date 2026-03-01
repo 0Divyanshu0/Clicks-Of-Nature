@@ -99,7 +99,7 @@ const portfolioItems = [
     id: 14,
     image: "/Journal/cu-campus-gallery.jpeg",
     title: "College Days",
-    category: "Campus",
+    category: "Street",
     description: "Wandering the gallery with a twinge of nostalgia for the college days.",
   },
 ];
