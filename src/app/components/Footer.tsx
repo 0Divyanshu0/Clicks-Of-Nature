@@ -1,5 +1,7 @@
 import { motion } from 'motion/react';
 import { Camera, Heart } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import { incrementVisit, getVisitCount } from '../../lib/visitor';
 
 interface FooterProps {
   isDark: boolean;
@@ -7,6 +9,30 @@ interface FooterProps {
 
 export function Footer({ isDark }: FooterProps) {
   const currentYear = new Date().getFullYear();
+  const [visits, setVisits] = useState<number | null>(null);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    // avoid counting multiple reloads in the same session
+    const key = 'hasVisited';
+    const already = sessionStorage.getItem(key);
+
+    if (!already) {
+      incrementVisit().catch((err) => {
+        console.error('visit increment failed', err);
+        setError('unable to record visit');
+      });
+      sessionStorage.setItem(key, 'true');
+    }
+
+    // always fetch current value for display
+    getVisitCount()
+      .then(setVisits)
+      .catch((err) => {
+        console.error('failed to load visit count', err);
+        setError(':)');
+      });
+  }, []);
 
   return (
     <footer
@@ -96,6 +122,14 @@ export function Footer({ isDark }: FooterProps) {
           <p className="text-xs sm:text-sm text-gray-500 flex items-center">
             Made with <Heart className="w-3 h-3 sm:w-4 sm:h-4 mx-1 text-red-500" /> and patience
           </p>
+          <p className="text-xs sm:text-sm text-gray-500">
+            Visits: {visits !== null ? visits.toLocaleString() : error ? '—' : 'loading...'}
+          </p>
+          {error && (
+            <p className="text-xs sm:text-sm text-red-500">
+              {error}
+            </p>
+          )}
         </motion.div>
       </div>
     </footer>
