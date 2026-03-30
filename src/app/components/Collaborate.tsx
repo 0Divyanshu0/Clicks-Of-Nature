@@ -1,5 +1,6 @@
 import { motion } from 'motion/react';
 import { Briefcase, Heart, Sparkles, Users } from 'lucide-react';
+import { scrollToSection } from '../navigation';
 
 interface CollaborateProps {
   isDark: boolean;
@@ -98,9 +99,7 @@ export function Collaborate({ isDark }: CollaborateProps) {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             className="px-6 sm:px-8 py-3 bg-white text-black rounded-full hover:bg-gray-100 transition-colors text-sm sm:text-base"
-            onClick={() => {
-              document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
-            }}
+            onClick={() => scrollToSection('contact')}
           >
             Get In Touch
           </motion.button>

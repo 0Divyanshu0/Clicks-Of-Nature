@@ -7,29 +7,29 @@ interface JournalProps {
   isDark: boolean;
 }
 
+const sortedJournalEntries = [...journalEntries].sort(
+  (a, b) => a.priority - b.priority
+);
+
 export default function Journal({ isDark }: JournalProps) {
   const [activeEntry, setActiveEntry] = useState<JournalEntry | null>(null);
 
-  // ✅ Sort by editorial priority (lower = higher importance)
-  const sortedEntries = [...journalEntries].sort(
-    (a, b) => a.priority - b.priority
-  );
-
   const currentIndex = activeEntry
-    ? sortedEntries.findIndex((e) => e.id === activeEntry.id)
+    ? sortedJournalEntries.findIndex((entry) => entry.id === activeEntry.id)
     : -1;
 
   const goNext = () => {
     if (currentIndex === -1) return;
-    const nextIndex = (currentIndex + 1) % sortedEntries.length;
-    setActiveEntry(sortedEntries[nextIndex]);
+    const nextIndex = (currentIndex + 1) % sortedJournalEntries.length;
+    setActiveEntry(sortedJournalEntries[nextIndex]);
   };
 
   const goPrev = () => {
     if (currentIndex === -1) return;
     const prevIndex =
-      (currentIndex - 1 + sortedEntries.length) % sortedEntries.length;
-    setActiveEntry(sortedEntries[prevIndex]);
+      (currentIndex - 1 + sortedJournalEntries.length) %
+      sortedJournalEntries.length;
+    setActiveEntry(sortedJournalEntries[prevIndex]);
   };
 
   return (
@@ -48,9 +48,8 @@ export default function Journal({ isDark }: JournalProps) {
           Photography Journal
         </h2>
 
-        {/* Journal Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-          {sortedEntries.map((entry) => (
+          {sortedJournalEntries.map((entry) => (
             <JournalCard
               key={entry.id}
               entry={entry}
@@ -61,7 +60,6 @@ export default function Journal({ isDark }: JournalProps) {
         </div>
       </div>
 
-      {/* Modal */}
       <JournalModal
         isOpen={!!activeEntry}
         post={activeEntry}

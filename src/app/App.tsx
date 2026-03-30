@@ -3,15 +3,17 @@ import { ScrollProgress } from "./components/ScrollProgress";
 import { Header } from "./components/Header";
 import { Hero } from "./components/Hero";
 import { Portfolio } from "./components/Portfolio";
+import { Reels } from "./components/Reels";
 import { About } from "./components/About";
 import { Collaborate } from "./components/Collaborate";
 import { Contact } from "./components/Contact";
 import { Footer } from "./components/Footer";
 import { Toaster } from "react-hot-toast";
 import Journal from "./components/Journal";
+import { SECTION_IDS, scrollToSection, SectionId } from "./navigation";
 
 export default function App() {
-  const [activeSection, setActiveSection] = useState("home");
+  const [activeSection, setActiveSection] = useState<SectionId>("home");
   const [isDark] = useState(true); // 🔒 Locked to dark
 
   // Force dark mode globally
@@ -21,18 +23,9 @@ export default function App() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = [
-        "home",
-        "portfolio",
-        "journal",
-        "about",
-        "collaborate",
-        "contact",
-      ];
-
       const scrollPosition = window.scrollY + 100;
 
-      for (const section of sections) {
+      for (const section of SECTION_IDS) {
         const element = document.getElementById(section);
         if (!element) continue;
 
@@ -50,8 +43,8 @@ export default function App() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const handleNavigate = (section: string) => {
-    document.getElementById(section)?.scrollIntoView({ behavior: "smooth" });
+  const handleNavigate = (section: SectionId) => {
+    scrollToSection(section);
   };
 
   return (
@@ -69,6 +62,7 @@ export default function App() {
       <Hero isDark={isDark} />
       <Portfolio isDark={isDark} />
       <Journal isDark={isDark} />
+      <Reels isDark={isDark} />
       <About isDark={isDark} />
       <Collaborate isDark={isDark} />
       <Contact isDark={isDark} />

@@ -1,5 +1,6 @@
 import { motion, useScroll, useTransform } from "motion/react";
 import { Camera } from "lucide-react";
+import { scrollToSection } from "../navigation";
 
 interface HeroProps {
   isDark: boolean;
@@ -84,11 +85,7 @@ export function Hero({ isDark }: HeroProps) {
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           className="px-6 sm:px-8 py-3 bg-white text-black rounded-full hover:bg-gray-100 transition-colors text-sm sm:text-base"
-          onClick={() => {
-            document
-              .getElementById("portfolio")
-              ?.scrollIntoView({ behavior: "smooth" });
-          }}
+          onClick={() => scrollToSection("portfolio")}
         >
           Explore Moments
         </motion.button>

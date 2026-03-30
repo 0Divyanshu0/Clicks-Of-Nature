@@ -1,23 +1,16 @@
 import { useState } from "react";
 import { motion } from "motion/react";
 import { Menu, X } from "lucide-react";
+import { NAV_ITEMS, SectionId } from "../navigation";
 
 interface HeaderProps {
-  activeSection: string;
-  onNavigate: (section: string) => void;
+  activeSection: SectionId;
+  onNavigate: (section: SectionId) => void;
   isDark: boolean;
 }
 
 export function Header({ activeSection, onNavigate, isDark }: HeaderProps) {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false); // ✅ fixed default
-
-  const navItems = [
-    { id: "home", label: "Home" },
-    { id: "portfolio", label: "Journal" },
-    { id: "about", label: "About" },
-    { id: "collaborate", label: "Stories" },
-    { id: "contact", label: "Contact" },
-  ];
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
     <motion.header
@@ -25,13 +18,12 @@ export function Header({ activeSection, onNavigate, isDark }: HeaderProps) {
       animate={{ y: 0 }}
       className={`fixed top-0 left-0 right-0 z-50 backdrop-blur-md border-b ${
         isDark
-          ? "bg-gray-900/80 border-gray-800"
+          ? "bg-gray-900/95 border-gray-800"
           : "bg-white/80 border-gray-200"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-14 sm:h-16">
-          {/* Logo */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -48,16 +40,15 @@ export function Header({ activeSection, onNavigate, isDark }: HeaderProps) {
             </span>
           </motion.div>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex space-x-8 items-center">
-            {navItems.map((item, index) => (
+          <nav className="hidden md:flex items-center gap-4 lg:gap-6">
+            {NAV_ITEMS.map((item, index) => (
               <motion.button
                 key={item.id}
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1 * index }}
                 onClick={() => onNavigate(item.id)}
-                className={`relative text-sm lg:text-base transition-colors ${
+                className={`relative text-sm transition-colors whitespace-nowrap ${
                   activeSection === item.id
                     ? isDark
                       ? "text-white"
@@ -80,11 +71,10 @@ export function Header({ activeSection, onNavigate, isDark }: HeaderProps) {
             ))}
           </nav>
 
-          {/* Mobile Menu Button */}
           <div className="md:hidden">
             <button
               className={`p-2 ${isDark ? "text-white" : "text-black"}`}
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              onClick={() => setMobileMenuOpen((open) => !open)}
               aria-label="Toggle menu"
             >
               {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -92,7 +82,6 @@ export function Header({ activeSection, onNavigate, isDark }: HeaderProps) {
           </div>
         </div>
 
-        {/* Mobile Navigation */}
         {mobileMenuOpen && (
           <motion.nav
             initial={{ opacity: 0, height: 0 }}
@@ -102,7 +91,7 @@ export function Header({ activeSection, onNavigate, isDark }: HeaderProps) {
               isDark ? "border-gray-800" : "border-gray-200"
             }`}
           >
-            {navItems.map((item) => (
+            {NAV_ITEMS.map((item) => (
               <button
                 key={item.id}
                 onClick={() => {

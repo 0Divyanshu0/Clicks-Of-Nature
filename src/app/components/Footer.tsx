@@ -1,7 +1,6 @@
-import { motion } from 'motion/react';
-import { Camera, Heart } from 'lucide-react';
-import { useEffect, useState } from 'react';
-import { incrementVisit, getVisitCount } from '../../lib/visitor';
+import { motion } from "motion/react";
+import { Camera, Heart } from "lucide-react";
+import { NAV_ITEMS, scrollToSection } from "../navigation";
 
 interface FooterProps {
   isDark: boolean;
@@ -9,41 +8,15 @@ interface FooterProps {
 
 export function Footer({ isDark }: FooterProps) {
   const currentYear = new Date().getFullYear();
-  const [visits, setVisits] = useState<number | null>(null);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    // avoid counting multiple reloads in the same session
-    const key = 'hasVisited';
-    const already = sessionStorage.getItem(key);
-
-    if (!already) {
-      incrementVisit().catch((err) => {
-        console.error('visit increment failed', err);
-        setError('unable to record visit');
-      });
-      sessionStorage.setItem(key, 'true');
-    }
-
-    // always fetch current value for display
-    getVisitCount()
-      .then(setVisits)
-      .catch((err) => {
-        console.error('failed to load visit count', err);
-        setError(':)');
-      });
-  }, []);
 
   return (
     <footer
       className={`py-10 sm:py-14 px-4 sm:px-6 lg:px-8 transition-colors ${
-        isDark ? 'bg-black text-white' : 'bg-gray-900 text-white'
+        isDark ? "bg-black text-white" : "bg-gray-900 text-white"
       }`}
     >
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10 mb-8 sm:mb-10">
-          
-          {/* Brand / Identity */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -57,12 +30,11 @@ export function Footer({ isDark }: FooterProps) {
               </span>
             </div>
             <p className="text-sm sm:text-base text-gray-400 leading-relaxed">
-              A quiet photography journal — capturing nature, moments,
-              and everyday stories, one frame at a time.
+              A quiet photography journal, capturing nature, moments, and
+              everyday stories, one frame at a time.
             </p>
           </motion.div>
 
-          {/* Navigation */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -74,24 +46,19 @@ export function Footer({ isDark }: FooterProps) {
               Navigate
             </h4>
             <ul className="space-y-2">
-              {['Home', 'Portfolio', 'About', 'Collaborate', 'Contact'].map((link) => (
-                <li key={link}>
+              {NAV_ITEMS.map((item) => (
+                <li key={item.id}>
                   <button
-                    onClick={() => {
-                      document
-                        .getElementById(link.toLowerCase())
-                        ?.scrollIntoView({ behavior: 'smooth' });
-                    }}
+                    onClick={() => scrollToSection(item.id)}
                     className="text-sm sm:text-base text-gray-400 hover:text-white transition-colors"
                   >
-                    {link}
+                    {item.label}
                   </button>
                 </li>
               ))}
             </ul>
           </motion.div>
 
-          {/* Closing Note */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -103,13 +70,12 @@ export function Footer({ isDark }: FooterProps) {
               A small note
             </h4>
             <p className="text-sm sm:text-base text-gray-400 leading-relaxed">
-              Thanks for spending a moment here.
-              If something resonated with you, I’m glad our paths crossed.
+              Thanks for spending a moment here. If something resonated with
+              you, I am glad our paths crossed.
             </p>
           </motion.div>
         </div>
 
-        {/* Bottom Bar */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -117,19 +83,13 @@ export function Footer({ isDark }: FooterProps) {
           className="pt-6 sm:pt-8 border-t border-gray-800 flex flex-col sm:flex-row justify-between items-center gap-4"
         >
           <p className="text-xs sm:text-sm text-gray-500 text-center sm:text-left">
-            © {currentYear} Clicks of Nature - Divyanshu Srivastava
+            Copyright {currentYear} Clicks of Nature - Divyanshu Srivastava
           </p>
           <p className="text-xs sm:text-sm text-gray-500 flex items-center">
-            Made with <Heart className="w-3 h-3 sm:w-4 sm:h-4 mx-1 text-red-500" /> and patience
+            Made with{" "}
+            <Heart className="w-3 h-3 sm:w-4 sm:h-4 mx-1 text-red-500" /> and
+            patience
           </p>
-          <p className="text-xs sm:text-sm text-gray-500">
-            Visits: {visits !== null ? visits.toLocaleString() : error ? '—' : 'loading...'}
-          </p>
-          {error && (
-            <p className="text-xs sm:text-sm text-red-500">
-              {error}
-            </p>
-          )}
         </motion.div>
       </div>
     </footer>
