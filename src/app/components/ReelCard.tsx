@@ -1,11 +1,10 @@
 import { useRef, useState } from "react";
 import { motion } from "motion/react";
 import { MapPin, Play } from "lucide-react";
-import { ReelEntry } from "../../data/reels";
+import { type ReelEntry } from "../../data/reels";
 
 interface ReelCardProps {
   entry: ReelEntry;
-  isDark: boolean;
   onClick: () => void;
 }
 
@@ -21,13 +20,16 @@ const cardSpanClasses: Record<ReelEntry["orientation"], string> = {
   square: "",
 };
 
-export function ReelCard({ entry, isDark, onClick }: ReelCardProps) {
+export function ReelCard({ entry, onClick }: ReelCardProps) {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const [isPreviewing, setIsPreviewing] = useState(false);
 
   const handlePreviewStart = () => {
     const video = videoRef.current;
-    if (!video) return;
+    if (!video) {
+      return;
+    }
+
     setIsPreviewing(true);
     video.currentTime = 0;
     void video.play().catch(() => undefined);
@@ -35,7 +37,10 @@ export function ReelCard({ entry, isDark, onClick }: ReelCardProps) {
 
   const handlePreviewStop = () => {
     const video = videoRef.current;
-    if (!video) return;
+    if (!video) {
+      return;
+    }
+
     video.pause();
     video.currentTime = 0;
     setIsPreviewing(false);
@@ -50,13 +55,9 @@ export function ReelCard({ entry, isDark, onClick }: ReelCardProps) {
       onMouseLeave={handlePreviewStop}
       onFocus={handlePreviewStart}
       onBlur={handlePreviewStop}
-      className={`cursor-pointer rounded-xl overflow-hidden shadow-lg active:scale-[0.98] sm:active:scale-100 ${
-        isDark ? "bg-gray-800" : "bg-white"
-      } ${cardSpanClasses[entry.orientation]}`}
+      className={`cursor-pointer overflow-hidden rounded-xl bg-gray-800 shadow-lg active:scale-[0.98] sm:active:scale-100 ${cardSpanClasses[entry.orientation]}`}
     >
-      <div
-        className={`relative overflow-hidden ${frameClasses[entry.orientation]}`}
-      >
+      <div className={`relative overflow-hidden ${frameClasses[entry.orientation]}`}>
         <img
           src={entry.poster}
           alt={entry.title}
@@ -76,12 +77,12 @@ export function ReelCard({ entry, isDark, onClick }: ReelCardProps) {
           }`}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/15 to-transparent" />
-        <div className="absolute top-3 right-3 rounded-full bg-black/55 px-2.5 py-1 text-xs text-white">
+        <div className="absolute right-3 top-3 rounded-full bg-black/55 px-2.5 py-1 text-xs text-white">
           {entry.duration}
         </div>
         <div className="absolute bottom-4 left-4 right-4 flex items-end justify-between gap-3">
           <div>
-            <p className="text-xs text-gray-300 mb-1">{entry.date}</p>
+            <p className="mb-1 text-xs text-gray-300">{entry.date}</p>
             <h3 className="text-lg font-medium text-white">{entry.title}</h3>
             <p className="mt-1 flex items-center gap-1 text-xs text-gray-300">
               <MapPin className="h-3 w-3" />
@@ -96,17 +97,11 @@ export function ReelCard({ entry, isDark, onClick }: ReelCardProps) {
 
       <div className="p-4 sm:p-5">
         <div className="mb-3 flex flex-wrap gap-2">
-          <span
-            className={`rounded-full px-2.5 py-1 text-xs ${
-              isDark ? "bg-gray-700 text-gray-200" : "bg-gray-100 text-gray-700"
-            }`}
-          >
+          <span className="rounded-full bg-gray-700 px-2.5 py-1 text-xs text-gray-200">
             {entry.tag}
           </span>
         </div>
-        <p className={`text-sm ${isDark ? "text-gray-300" : "text-gray-600"}`}>
-          {entry.excerpt}
-        </p>
+        <p className="text-sm text-gray-300">{entry.excerpt}</p>
       </div>
     </motion.article>
   );

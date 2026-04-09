@@ -6,24 +6,19 @@ import { NAV_ITEMS, SectionId } from "../navigation";
 interface HeaderProps {
   activeSection: SectionId;
   onNavigate: (section: SectionId) => void;
-  isDark: boolean;
 }
 
-export function Header({ activeSection, onNavigate, isDark }: HeaderProps) {
+export function Header({ activeSection, onNavigate }: HeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
     <motion.header
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      className={`fixed top-0 left-0 right-0 z-50 backdrop-blur-md border-b ${
-        isDark
-          ? "bg-gray-900/95 border-gray-800"
-          : "bg-white/80 border-gray-200"
-      }`}
+      className="fixed top-0 left-0 right-0 z-50 border-b border-gray-800 bg-gray-900/95 backdrop-blur-md"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-14 sm:h-16">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="flex h-14 items-center justify-between sm:h-16">
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -31,16 +26,12 @@ export function Header({ activeSection, onNavigate, isDark }: HeaderProps) {
             className="cursor-pointer"
             onClick={() => onNavigate("home")}
           >
-            <span
-              className={`text-xl sm:text-2xl tracking-tight ${
-                isDark ? "text-white" : "text-black"
-              }`}
-            >
+            <span className="text-xl tracking-tight text-white sm:text-2xl">
               Clicks_.of_.Nature
             </span>
           </motion.div>
 
-          <nav className="hidden md:flex items-center gap-4 lg:gap-6">
+          <nav className="hidden items-center gap-4 md:flex lg:gap-6">
             {NAV_ITEMS.map((item, index) => (
               <motion.button
                 key={item.id}
@@ -48,23 +39,17 @@ export function Header({ activeSection, onNavigate, isDark }: HeaderProps) {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1 * index }}
                 onClick={() => onNavigate(item.id)}
-                className={`relative text-sm transition-colors whitespace-nowrap ${
+                className={`relative whitespace-nowrap text-sm transition-colors ${
                   activeSection === item.id
-                    ? isDark
-                      ? "text-white"
-                      : "text-black"
-                    : isDark
-                    ? "text-gray-400 hover:text-white"
-                    : "text-gray-600 hover:text-black"
+                    ? "text-white"
+                    : "text-gray-400 hover:text-white"
                 }`}
               >
                 {item.label}
                 {activeSection === item.id && (
                   <motion.div
                     layoutId="activeSection"
-                    className={`absolute -bottom-[21px] sm:-bottom-[25px] left-0 right-0 h-0.5 ${
-                      isDark ? "bg-white" : "bg-black"
-                    }`}
+                    className="absolute left-0 right-0 -bottom-[21px] h-0.5 bg-white sm:-bottom-[25px]"
                   />
                 )}
               </motion.button>
@@ -73,7 +58,7 @@ export function Header({ activeSection, onNavigate, isDark }: HeaderProps) {
 
           <div className="md:hidden">
             <button
-              className={`p-2 ${isDark ? "text-white" : "text-black"}`}
+              className="p-2 text-white"
               onClick={() => setMobileMenuOpen((open) => !open)}
               aria-label="Toggle menu"
             >
@@ -87,9 +72,7 @@ export function Header({ activeSection, onNavigate, isDark }: HeaderProps) {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className={`md:hidden py-4 border-t ${
-              isDark ? "border-gray-800" : "border-gray-200"
-            }`}
+            className="border-t border-gray-800 py-4 md:hidden"
           >
             {NAV_ITEMS.map((item) => (
               <button
@@ -98,14 +81,10 @@ export function Header({ activeSection, onNavigate, isDark }: HeaderProps) {
                   onNavigate(item.id);
                   setMobileMenuOpen(false);
                 }}
-                className={`block w-full text-left py-3 px-4 text-base transition-colors ${
+                className={`block w-full px-4 py-3 text-left text-base transition-colors ${
                   activeSection === item.id
-                    ? isDark
-                      ? "text-white bg-gray-800"
-                      : "text-black bg-gray-100"
-                    : isDark
-                    ? "text-gray-400 hover:text-white"
-                    : "text-gray-600 hover:text-black"
+                    ? "bg-gray-800 text-white"
+                    : "text-gray-400 hover:text-white"
                 }`}
               >
                 {item.label}

@@ -1,80 +1,102 @@
-import { motion } from 'motion/react';
-import { Briefcase, Heart, Sparkles, Users } from 'lucide-react';
-import { scrollToSection } from '../navigation';
+import { motion } from "motion/react";
+import { Briefcase, Heart, Sparkles, Users } from "lucide-react";
+import { scrollToSection } from "../navigation";
 
-interface CollaborateProps {
-  isDark: boolean;
-}
+const services = [
+  {
+    icon: Heart,
+    title: "Personal Stories",
+    description: "Collaborations rooted in real moments and human connection.",
+    features: [
+      "Candid storytelling",
+      "Natural light & environments",
+      "Emotion over perfection",
+    ],
+  },
+  {
+    icon: Sparkles,
+    title: "Nature & Places",
+    description: "Exploring landscapes, streets, and quiet corners together.",
+    features: [
+      "Outdoor shoots",
+      "Slow, observational approach",
+      "Mood-focused frames",
+    ],
+  },
+  {
+    icon: Users,
+    title: "Creative Experiments",
+    description: "Open to trying ideas that don't fit into categories.",
+    features: [
+      "Concept-driven shoots",
+      "Minimal setups",
+      "Freedom to explore",
+    ],
+  },
+  {
+    icon: Briefcase,
+    title: "Selective Projects",
+    description: "Occasional collaborations that align with my style and values.",
+    features: [
+      "Small-scale projects",
+      "Aligned creative vision",
+      "Story-first approach",
+    ],
+  },
+];
 
-export function Collaborate({ isDark }: CollaborateProps) {
+export function Collaborate() {
   return (
-    <section id="collaborate" className={`py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8 transition-colors ${
-      isDark ? 'bg-gray-800' : 'bg-gray-50'
-    }`}>
-      <div className="max-w-7xl mx-auto">
+    <section
+      id="collaborate"
+      className="bg-gray-800 px-4 py-12 transition-colors sm:px-6 sm:py-16 lg:px-8 lg:py-20"
+    >
+      <div className="mx-auto max-w-7xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-8 sm:mb-12"
+          className="mb-8 text-center sm:mb-12"
         >
-          <h2
-  className={`text-3xl sm:text-4xl lg:text-5xl mb-3 sm:mb-4 ${
-    isDark ? 'text-white' : 'text-black'
-  }`}
->
-  Open to Collaborations
-</h2>
-
-<p className={`text-lg sm:text-xl max-w-2xl mx-auto px-4 ${
-  isDark ? 'text-gray-300' : 'text-gray-600'
-}`}>
-  I enjoy working on ideas that feel honest, thoughtful, and meaningful
-</p>
-
+          <h2 className="mb-3 text-3xl text-white sm:mb-4 sm:text-4xl lg:text-5xl">
+            Open to Collaborations
+          </h2>
+          <p className="mx-auto max-w-2xl px-4 text-lg text-gray-300 sm:text-xl">
+            I enjoy working on ideas that feel honest, thoughtful, and meaningful
+          </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 mb-12 sm:mb-16">
+        <div className="mb-12 grid grid-cols-1 gap-6 sm:mb-16 sm:gap-8 md:grid-cols-2">
           {services.map((service, index) => (
             <motion.div
-              key={index}
+              key={service.title}
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ delay: index * 0.1, duration: 0.5 }}
               whileHover={{ y: -10, scale: 1.02 }}
-              className={`rounded-lg p-6 sm:p-8 shadow-lg ${
-                isDark ? 'bg-gray-900' : 'bg-white'
-              }`}
+              className="rounded-lg bg-gray-900 p-6 shadow-lg sm:p-8"
             >
-              <div className="flex items-start mb-4">
-                <div className={`p-3 rounded-lg mr-4 flex-shrink-0 ${
-                  isDark ? 'bg-gray-800' : 'bg-gray-100'
-                }`}>
-                  <service.icon className={`w-5 h-5 sm:w-6 sm:h-6 ${isDark ? 'text-white' : 'text-black'}`} />
+              <div className="mb-4 flex items-start">
+                <div className="mr-4 flex-shrink-0 rounded-lg bg-gray-800 p-3">
+                  <service.icon className="h-5 w-5 text-white sm:h-6 sm:w-6" />
                 </div>
                 <div>
-                  <h3 className={`text-xl sm:text-2xl mb-2 ${
-  isDark ? 'text-white' : 'text-black'
-}`}>
-  {service.title}
-</h3>
-
-<p className={`text-sm sm:text-base ${
-  isDark ? 'text-gray-400' : 'text-gray-600'
-}`}>
-  {service.description}
-</p>
+                  <h3 className="mb-2 text-xl text-white sm:text-2xl">
+                    {service.title}
+                  </h3>
+                  <p className="text-sm text-gray-400 sm:text-base">
+                    {service.description}
+                  </p>
                 </div>
               </div>
               <ul className="space-y-2">
-                {service.features.map((feature, idx) => (
-                  <li key={idx} className={`flex items-center text-sm sm:text-base ${
-                    isDark ? 'text-gray-300' : 'text-gray-700'
-                  }`}>
-                    <div className={`w-1.5 h-1.5 rounded-full mr-3 flex-shrink-0 ${
-                      isDark ? 'bg-white' : 'bg-black'
-                    }`}></div>
+                {service.features.map((feature) => (
+                  <li
+                    key={feature}
+                    className="flex items-center text-sm text-gray-300 sm:text-base"
+                  >
+                    <div className="mr-3 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-white"></div>
                     {feature}
                   </li>
                 ))}
@@ -83,23 +105,24 @@ export function Collaborate({ isDark }: CollaborateProps) {
           ))}
         </div>
 
-        {/* CTA Section */}
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="bg-gradient-to-r from-gray-900 to-gray-800 rounded-lg p-8 sm:p-12 text-center text-white"
+          className="rounded-lg bg-gradient-to-r from-gray-900 to-gray-800 p-8 text-center text-white sm:p-12"
         >
-          <h3 className="text-2xl sm:text-3xl lg:text-4xl mb-3 sm:mb-4">Ready to Start Your Project?</h3>
-          <p className="text-lg sm:text-xl text-gray-300 mb-6 sm:mb-8 max-w-2xl mx-auto px-4">
-            Let's discuss your vision and create something amazing together
+          <h3 className="mb-3 text-2xl sm:mb-4 sm:text-3xl lg:text-4xl">
+            Ready to Start Your Project?
+          </h3>
+          <p className="mx-auto mb-6 max-w-2xl px-4 text-lg text-gray-300 sm:mb-8 sm:text-xl">
+            Let&apos;s discuss your vision and create something amazing together
           </p>
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="px-6 sm:px-8 py-3 bg-white text-black rounded-full hover:bg-gray-100 transition-colors text-sm sm:text-base"
-            onClick={() => scrollToSection('contact')}
+            className="rounded-full bg-white px-6 py-3 text-sm text-black transition-colors hover:bg-gray-100 sm:px-8 sm:text-base"
+            onClick={() => scrollToSection("contact")}
           >
             Get In Touch
           </motion.button>
@@ -108,45 +131,3 @@ export function Collaborate({ isDark }: CollaborateProps) {
     </section>
   );
 }
-const services = [
-  {
-    icon: Heart,
-    title: 'Personal Stories',
-    description: 'Collaborations rooted in real moments and human connection.',
-    features: [
-      'Candid storytelling',
-      'Natural light & environments',
-      'Emotion over perfection',
-    ],
-  },
-  {
-    icon: Sparkles,
-    title: 'Nature & Places',
-    description: 'Exploring landscapes, streets, and quiet corners together.',
-    features: [
-      'Outdoor shoots',
-      'Slow, observational approach',
-      'Mood-focused frames',
-    ],
-  },
-  {
-    icon: Users,
-    title: 'Creative Experiments',
-    description: 'Open to trying ideas that don’t fit into categories.',
-    features: [
-      'Concept-driven shoots',
-      'Minimal setups',
-      'Freedom to explore',
-    ],
-  },
-  {
-    icon: Briefcase,
-    title: 'Selective Projects',
-    description: 'Occasional collaborations that align with my style and values.',
-    features: [
-      'Small-scale projects',
-      'Aligned creative vision',
-      'Story-first approach',
-    ],
-  },
-];
