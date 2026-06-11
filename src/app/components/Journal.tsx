@@ -1,71 +1,60 @@
 import { useState } from "react";
-import { journalEntries, JournalEntry } from "../../data/journal";
+import { journalEntries, type JournalEntry } from "../../data/journal";
 import { JournalCard } from "./JournalCard";
 import JournalModal from "./JournalModal";
 
-interface JournalProps {
-  isDark: boolean;
-}
+const sortedJournalEntries = [...journalEntries].sort(
+  (a, b) => b.priority - a.priority
+);
 
-export default function Journal({ isDark }: JournalProps) {
+export default function Journal() {
   const [activeEntry, setActiveEntry] = useState<JournalEntry | null>(null);
 
-  // ✅ Sort by editorial priority (lower = higher importance)
-  const sortedEntries = [...journalEntries].sort(
-    (a, b) => a.priority - b.priority
-  );
-
   const currentIndex = activeEntry
-    ? sortedEntries.findIndex((e) => e.id === activeEntry.id)
+    ? sortedJournalEntries.findIndex((entry) => entry.id === activeEntry.id)
     : -1;
 
   const goNext = () => {
-    if (currentIndex === -1) return;
-    const nextIndex = (currentIndex + 1) % sortedEntries.length;
-    setActiveEntry(sortedEntries[nextIndex]);
+    if (currentIndex === -1) {
+      return;
+    }
+
+    const nextIndex = (currentIndex + 1) % sortedJournalEntries.length;
+    setActiveEntry(sortedJournalEntries[nextIndex]);
   };
 
   const goPrev = () => {
-    if (currentIndex === -1) return;
+    if (currentIndex === -1) {
+      return;
+    }
+
     const prevIndex =
-      (currentIndex - 1 + sortedEntries.length) % sortedEntries.length;
-    setActiveEntry(sortedEntries[prevIndex]);
+      (currentIndex - 1 + sortedJournalEntries.length) %
+      sortedJournalEntries.length;
+    setActiveEntry(sortedJournalEntries[prevIndex]);
   };
 
   return (
-    <section
-      id="journal"
-      className={`py-12 sm:py-16 px-4 sm:px-6 lg:px-8 ${
-        isDark ? "bg-gray-900" : "bg-white"
-      }`}
-    >
-      <div className="max-w-7xl mx-auto">
-        <h2
-          className={`text-3xl sm:text-4xl mb-6 sm:mb-10 text-center ${
-            isDark ? "text-white" : "text-black"
-          }`}
-        >
+    <section id="journal" className="bg-gray-900 px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
+      <div className="mx-auto max-w-7xl">
+        <h2 className="mb-6 text-center text-3xl text-white sm:mb-10 sm:text-4xl">
           Photography Journal
         </h2>
 
-        {/* Journal Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-          {sortedEntries.map((entry) => (
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
+          {sortedJournalEntries.map((entry) => (
             <JournalCard
               key={entry.id}
               entry={entry}
-              isDark={isDark}
               onClick={() => setActiveEntry(entry)}
             />
           ))}
         </div>
       </div>
 
-      {/* Modal */}
       <JournalModal
         isOpen={!!activeEntry}
         post={activeEntry}
-        isDark={isDark}
         onClose={() => setActiveEntry(null)}
         onNext={goNext}
         onPrev={goPrev}

@@ -1,40 +1,32 @@
 import { motion } from "motion/react";
-import { JournalEntry } from "../../data/journal";
+import { type JournalEntry } from "../../data/journal";
 
 interface JournalPostProps {
   entry: JournalEntry;
-  isDark: boolean;
-  onClose: () => void;
 }
 
-export function JournalPost({ entry, isDark }: JournalPostProps) {
+export function JournalPost({ entry }: JournalPostProps) {
   return (
     <article className="flex flex-col">
-      {/* Hero Image */}
-      <div className="w-full bg-black flex justify-center items-center">
+      <div className="flex w-full items-center justify-center bg-black">
         <motion.img
           src={entry.image}
           alt={entry.title}
           layoutId={`journal-image-${entry.id}`}
-          className="w-full h-auto max-h-[60svh] sm:max-h-[80vh] object-contain"
+          className="h-auto max-h-[60svh] w-full object-contain sm:max-h-[80vh]"
         />
       </div>
 
-      {/* Content */}
-      <div className="p-5 sm:p-8 max-w-3xl mx-auto">
-        <p className="text-xs text-gray-400 mb-2">
+      <div className="mx-auto max-w-3xl p-5 sm:p-8">
+        <p className="mb-2 text-xs text-gray-400">
           {entry.date} · {entry.readTime}
         </p>
 
-        <h2 className="text-2xl sm:text-3xl font-medium mb-5 sm:mb-6">
+        <h2 className="mb-5 text-2xl font-medium sm:mb-6 sm:text-3xl">
           {entry.title}
         </h2>
 
-        <div
-          className={`text-base leading-relaxed whitespace-pre-line ${
-            isDark ? "text-gray-300" : "text-gray-700"
-          }`}
-        >
+        <div className="whitespace-pre-line text-base leading-relaxed text-gray-300">
           {entry.content}
         </div>
       </div>

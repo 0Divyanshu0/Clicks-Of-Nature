@@ -1,13 +1,12 @@
+import { useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
-import { useEffect } from "react";
-import { JournalEntry } from "../../data/journal";
+import { type JournalEntry } from "../../data/journal";
 import { JournalPost } from "./JournalPost";
 
 interface JournalModalProps {
   isOpen: boolean;
   post: JournalEntry | null;
-  isDark: boolean;
   onClose: () => void;
   onNext: () => void;
   onPrev: () => void;
@@ -16,12 +15,10 @@ interface JournalModalProps {
 export default function JournalModal({
   isOpen,
   post,
-  isDark,
   onClose,
   onNext,
   onPrev,
 }: JournalModalProps) {
-  // 🔒 Lock background scroll
   useEffect(() => {
     document.body.style.overflow = isOpen ? "hidden" : "";
     return () => {
@@ -29,15 +26,17 @@ export default function JournalModal({
     };
   }, [isOpen]);
 
-  // ⌨️ Keyboard controls
   useEffect(() => {
-    const handleKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
-      if (e.key === "ArrowRight") onNext();
-      if (e.key === "ArrowLeft") onPrev();
+    const handleKey = (event: KeyboardEvent) => {
+      if (event.key === "Escape") onClose();
+      if (event.key === "ArrowRight") onNext();
+      if (event.key === "ArrowLeft") onPrev();
     };
 
-    if (isOpen) window.addEventListener("keydown", handleKey);
+    if (isOpen) {
+      window.addEventListener("keydown", handleKey);
+    }
+
     return () => window.removeEventListener("keydown", handleKey);
   }, [isOpen, onClose, onNext, onPrev]);
 
@@ -50,7 +49,6 @@ export default function JournalModal({
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
         >
-          {/* Backdrop */}
           <motion.div
             className="absolute inset-0 bg-black/70 backdrop-blur-sm"
             initial={{ opacity: 0 }}
@@ -59,46 +57,39 @@ export default function JournalModal({
             onClick={onClose}
           />
 
-          {/* Modal Container */}
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 40 }}
             transition={{ duration: 0.35, ease: "easeOut" }}
-            className={`relative z-10 w-full max-w-5xl h-[95svh] sm:h-[90vh] rounded-2xl shadow-2xl overflow-hidden ${
-              isDark ? "bg-gray-900 text-white" : "bg-white text-black"
-            }`}
+            className="relative z-10 h-[95svh] w-full max-w-5xl overflow-hidden rounded-2xl bg-gray-900 text-white shadow-2xl sm:h-[90vh]"
           >
-            {/* Close Button */}
             <button
               onClick={onClose}
-              className="absolute top-3 right-3 sm:top-4 sm:right-4 z-20 p-2 rounded-full hover:bg-black/10 dark:hover:bg-white/10 transition"
+              className="absolute right-3 top-3 z-20 rounded-full p-2 transition hover:bg-black/10 dark:hover:bg-white/10 sm:right-4 sm:top-4"
               aria-label="Close journal"
             >
               <X />
             </button>
 
-            {/* Previous (desktop only) */}
             <button
               onClick={onPrev}
-              className="hidden sm:flex absolute left-4 top-1/2 -translate-y-1/2 z-20 p-2 rounded-full bg-black/40 hover:bg-black/60 transition"
+              className="absolute left-4 top-1/2 z-20 hidden -translate-y-1/2 rounded-full bg-black/40 p-2 transition hover:bg-black/60 sm:flex"
               aria-label="Previous journal"
             >
               <ChevronLeft className="text-white" />
             </button>
 
-            {/* Next (desktop only) */}
             <button
               onClick={onNext}
-              className="hidden sm:flex absolute right-4 top-1/2 -translate-y-1/2 z-20 p-2 rounded-full bg-black/40 hover:bg-black/60 transition"
+              className="absolute right-4 top-1/2 z-20 hidden -translate-y-1/2 rounded-full bg-black/40 p-2 transition hover:bg-black/60 sm:flex"
               aria-label="Next journal"
             >
               <ChevronRight className="text-white" />
             </button>
 
-            {/* Scrollable Content */}
             <div className="h-full overflow-y-auto overscroll-contain">
-              <JournalPost entry={post} isDark={isDark} onClose={onClose} />
+              <JournalPost entry={post} />
             </div>
           </motion.div>
         </motion.div>
