@@ -33,4 +33,31 @@ export const reelEntries: ReelEntry[] = [
 The quieter side of the week.
 Short roads, slow frames, and the kind of time that feels like your own again.`,
   },
+  {
+id: "2",
+slug: "between-rides-and-blooms",
+title: "Between Rides & Blooms",
+excerpt: "Where motion slows and small details take over.",
+poster: "public/Reels/posters/bike_flower_slowmo.png",
+video: "public/Reels/bike_flower_slowmo.mp4",
+orientation: "portrait",
+location: "Bangalore",
+tag: "Evening Ride",
+date: "June 2026",
+duration: "0:12",
+priority: 0,
+content: `Not every ride is about distance.
+
+Sometimes,
+it’s the way light falls,
+the way something small holds your attention
+longer than it should.
+
+Between movement and pause,
+there’s a space where everything feels slower—
+and somehow, clearer.
+
+This was one of those moments.`,
+},
+  
 ];

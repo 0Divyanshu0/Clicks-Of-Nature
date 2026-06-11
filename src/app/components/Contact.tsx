@@ -30,7 +30,7 @@ const textFields: Array<Exclude<ContactField, "message" | "company">> = [
 
 const contactInfo = [
   { icon: Mail, label: "Email", value: "nature.clicks.of@gmail.com" },
-  { icon: Phone, label: "Phone", value: "+91 (better to reach via mail)" },
+  // { icon: Phone, label: "Phone", value: "+91 (better to reach via mail)" },
   { icon: MapPin, label: "Location", value: "Bangalore, India" },
 ];
 

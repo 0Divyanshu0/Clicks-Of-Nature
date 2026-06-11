@@ -107,6 +107,27 @@ export const portfolioItems: PortfolioItem[] = [
     description:
       "Wandering the gallery with a twinge of nostalgia for the college days.",
   },
+  {
+  id: 15,
+  image: "/Journal/bike_cloudy.jpg",
+  title: "Weekend Ride",
+  category: "Nature",
+  description: "Not chasing distance—just finding where it feels right to stop.",
+  },
+  {
+  id: 16,
+  image: "/Journal/cute_toy.jpg",
+  title: "Soft Light, Sharp Mood",
+  category: "Aesthetic",
+  description: "Cute on the surface, but the mood says otherwise.",
+  },
+  {
+  id: 17,
+  image: "/Journal/penukonda_fort.png",
+  title: "End of the Pace",
+  category: "Journey",
+  description: "The road continues. You decide when it’s enough.",
+},
 ];
 
 export const portfolioCategories = [

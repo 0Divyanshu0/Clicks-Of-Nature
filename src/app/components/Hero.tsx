@@ -18,7 +18,7 @@ export function Hero() {
       >
         <div
           className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: "url('/Journal/Hero.jpg')" }}
+          style={{ backgroundImage: "url('/Journal/hero2.jpg')" }}
         />
       </motion.div>
 
